@@ -1,9 +1,29 @@
-<h2>{{hero.name | uppercase}} Details</h2>
-<div><span>id: </span>{{hero.id}}</div>
+<h2>My Heroes</h2>
+<ul class="heroes">
 
-<!-- [(ngModel)] is Angular's two-way data binding syntax. -->
+  <!-- The *ngFor is Angular's repeater directive. -->
 
-<div>
-    <label for="name">Hero name: </label>
-    <input id="name" [(ngModel)]="hero.name" placeholder="name">
+  <!-- 1. <li> is the host element.
+       2. heroes holds the mock heroes list from the HeroesComponent class, the mock heroes list.
+       3. hero holds the current hero object for each iteration through the list. -->
+
+  <li *ngFor="let hero of heroes"
+      [class.selected]="hero === selectedHero"
+      (click)="onSelect(hero)" >
+    <span class="badge">{{hero.id}}</span> {{hero.name}}
+  </li>
+</ul>
+
+<div *ngIf="selectedHero">
+
+  <h2>{{selectedHero.name | uppercase}} Details</h2>
+  <div><span>id: </span>{{selectedHero.id}}</div>
+
+  <!-- [(ngModel)] is Angular's two-way data binding syntax. -->
+
+  <div>
+    <label for="hero-name">Hero name: </label>
+    <input id="hero-name" [(ngModel)]="selectedHero.name" placeholder="name">
+  </div>
+
 </div>
