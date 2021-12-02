@@ -11,6 +11,7 @@
     <a routerLink="/detail/{{hero.id}}">
     <span class="badge">{{hero.id}}</span> {{hero.name}}
     </a>
+    <button class="delete" title="delete hero" (click)="delete(hero)">x</button>
   </li>
 </ul>
 
@@ -18,3 +19,13 @@
 element, which maps to the hero property of the HeroDetailComponent. -->
 
 <!-- [hero]="selectedHero" is an Angular property binding -->
+
+<div>
+  <label for="new-hero">Hero name: </label>
+  <input id="new-hero" #heroName />
+
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button class="add-button" (click)="add(heroName.value); heroName.value=''">
+    Add hero
+  </button>
+</div>
